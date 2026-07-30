@@ -1,0 +1,12 @@
+# Python temporary files
+__pycache__/
+*.py[cod]
+*$*.py
+
+# Large binary files we don't want to track in git
+*.pptx
+*.docx
+
+# OS metadata
+.DS_Store
+Thumbs.db

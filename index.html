@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novastars - Global Future Competency Education Ecosystem</title>
+  <meta name="description" content="13 Years of Education Excellence: Shaping Future-Ready Citizens. Mapped to China K-12 Competencies.">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Language Visibility Control */
+    html[lang="en"] .lang-zh { display: none !important; }
+    html[lang="zh"] .lang-en { display: none !important; }
+    
+    /* Interactive Cycles & Navigation Tweaks */
+    .cycle-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-sm);
+      width: 100%;
+      margin-top: var(--space-md);
+    }
+    
+    .cycle-step {
+      text-align: center;
+      padding: var(--space-sm);
+      position: relative;
+    }
+    
+    .cycle-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-xs) auto;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(255, 142, 83, 0.4);
+    }
+    
+    .cycle-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -10px;
+      top: 25px;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+    }
+    
+    @media (max-width: 768px) {
+      .cycle-step:not(:last-child)::after {
+        content: '↓';
+        right: 50%;
+        bottom: -15px;
+        top: auto;
+        transform: translateX(50%);
+      }
+      .cycle-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    /* Platform Mockup Styles */
+    .mockup-container {
+      width: 100%;
+      height: 350px;
+      background: #ffffff;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--glass-shadow);
+    }
+    
+    [data-theme="dark"] .mockup-container {
+      background: #151518;
+    }
+
+    .mockup-header {
+      background: rgba(0, 0, 0, 0.03);
+      height: 40px;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-sm);
+      gap: 6px;
+    }
+    
+    [data-theme="dark"] .mockup-header {
+      background: #1c1c21;
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ff453a; }
+    .dot-yellow { background: #ffd60a; }
+    .dot-green { background: #30d158; }
+
+    .mockup-body {
+      flex-grow: 1;
+      display: flex;
+      padding: var(--space-sm);
+      gap: var(--space-sm);
+      background: inherit;
+    }
+
+    .mockup-sidebar {
+      width: 60px;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border: 1px solid var(--glass-border);
+    }
+    
+    [data-theme="dark"] .mockup-sidebar {
+      background: #1c1c21;
+    }
+
+    .mockup-sidebar-item {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    [data-theme="dark"] .mockup-sidebar-item {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mockup-sidebar-item.active {
+      background: var(--accent-orange);
+    }
+
+    .mockup-content {
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .mockup-card {
+      background: rgba(0,0,0,0.01);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      padding: var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    
+    [data-theme="dark"] .mockup-card {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .mockup-bar {
+      height: 12px;
+      border-radius: 4px;
+      background: rgba(0,0,0,0.05);
+      width: 100%;
+    }
+    
+    [data-theme="dark"] .mockup-bar {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mockup-chart {
+      flex-grow: 1;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: var(--space-sm) 0;
+    }
+
+    .chart-col {
+      flex-grow: 1;
+      background: var(--accent-orange);
+      border-radius: 4px 4px 0 0;
+      opacity: 0.7;
+      transition: height 0.5s ease;
+    }
+    
+    .chart-col:nth-child(2) { background: var(--accent-teal); }
+    .chart-col:nth-child(3) { background: var(--accent-purple); }
+
+    /* Custom QR code mockup */
+    .qr-container {
+      width: 120px;
+      height: 120px;
+      background: white;
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--glass-border);
+    }
+
+    .qr-mock {
+      width: 100px;
+      height: 100px;
+      background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
+                        linear-gradient(-45deg, #000 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #000 75%), 
+                        linear-gradient(-45deg, transparent 75%, #000 75%);
+      background-size: 10px 10px;
+      background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+      border: 4px solid black;
+      position: relative;
+    }
+
+    .qr-mock::before {
+      content: '';
+      position: absolute;
+      top: 4px; left: 4px; width: 20px; height: 20px;
+      border: 4px solid black; background: white;
+    }
+
+    .qr-mock::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 4px; width: 20px; height: 20px;
+      border: 4px solid black; background: white;
+    }
+
+    .qr-center-eye {
+      position: absolute;
+      top: 4px; right: 4px; width: 20px; height: 20px;
+      border: 4px solid black; background: white;
+    }
+
+    /* Sub-list for structured elements */
+    .curriculum-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .curriculum-list li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+    .curriculum-list li::before {
+      content: "•";
+      color: var(--accent-orange);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Image Gallery CSS */
+    .image-gallery {
+      display: flex;
+      gap: var(--space-xs);
+      overflow-x: auto;
+      padding: var(--space-xs) 0;
+      scrollbar-width: thin;
+    }
+    .image-gallery img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-orange);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="presentation-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="nav-container">
+      <div class="logo-area" style="padding-bottom: var(--space-md); border-bottom: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: flex-start; gap: 8px;">
+        <img src="https://www.novastars.vn/assets/images/logo.png" alt="Novastars Logo" style="height: 36px; width: auto; object-fit: contain;">
+        <div>
+          <p class="lang-zh" style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 700; margin: 0; font-family: var(--font-heading);">诺星未来素养教育生态</p>
+          <p class="lang-en" style="font-size: 0.7rem; color: var(--text-secondary); font-weight: 700; margin: 0; line-height: 1.2;">Future Competency Ecosystem</p>
+        </div>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a class="nav-link active" onclick="goToSlide(0)"><span class="lang-zh">1. 封面与愿景</span><span class="lang-en">1. Hero & Vision</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(1)"><span class="lang-zh">2. 未来的挑战</span><span class="lang-en">2. Future Challenge</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(2)"><span class="lang-zh">3. 六大支柱生态</span><span class="lang-en">3. 6-Pillar Ecosystem</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(3)"><span class="lang-zh">4. 教学闭环</span><span class="lang-en">4. Pedagogical Cycle</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(4)"><span class="lang-zh">5. 双轨制课程路径</span><span class="lang-en">5. Pathway & Matrix</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(5)"><span class="lang-zh">6. 数字化平台</span><span class="lang-en">6. Digital Platform</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(6)"><span class="lang-zh">7. 合作模式与联系</span><span class="lang-en">7. Partnership & Contact</span></a></li>
+      </ul>
+      
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: var(--space-sm);">
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+          <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
+        </div>
+        <!-- Theme Switcher (Aesthetic toggle) -->
+        <button onclick="toggleTheme()" style="background: transparent; border: 1px solid var(--glass-border); padding: 8px; border-radius: var(--radius-full); color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; width: 100%;">
+          <span class="lang-zh">🌓 切换主题</span><span class="lang-en">🌓 Toggle Theme</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Slides Wrapper -->
+    <main class="slides-wrapper">
+
+      <!-- Slide 1: Hero & Vision -->
+      <section class="slide active" id="slide-0">
+        <div class="slide-content animate-fade-up">
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-md); align-items: center;">
+            <div>
+              <div class="tag tag-expert" style="margin-bottom: var(--space-sm);">13 YEARS OF EDUCATION EXCELLENCE | 13年教育底蕴</div>
+              <h1 class="title-hero lang-zh" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-sm); font-size: 3rem;">塑造面向未来的全球公民</h1>
+              <h1 class="title-hero lang-en" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-sm); font-size: 3rem;">Shaping Future-Ready Citizens</h1>
+              <p class="subtitle lang-zh" style="font-size: 1.1rem; line-height: 1.6;">通过全方位的素养教育生态系统，跨越传统学术教育与真实世界成功之间的鸿沟。</p>
+              <p class="subtitle lang-en" style="font-size: 1.1rem; line-height: 1.6;">Redefining K-12 education through a holistic competency-based ecosystem bridging academics and real-world success.</p>
+            </div>
+            <!-- Slide 1 image from PPTX -->
+            <div style="position: relative;">
+              <img src="assets/images/image12.jpeg" alt="Novastars Classroom" style="width: 100%; height: auto; max-height: 280px; object-fit: cover; border-radius: var(--radius-md); border: 4px solid white; box-shadow: var(--glass-shadow);">
+            </div>
+          </div>
+
+          <!-- Glass Card Metrics -->
+          <div class="metrics-grid" style="margin-top: var(--space-md);">
+            <div class="glass-card metric-card">
+              <div class="metric-value">400+</div>
+              <div class="metric-label lang-zh">合作学校</div>
+              <div class="metric-label lang-en">Partner Schools</div>
+            </div>
+            <div class="glass-card metric-card">
+              <div class="metric-value">8,000+</div>
+              <div class="metric-label lang-zh">教师获赋能</div>
+              <div class="metric-label lang-en">Empowered Teachers</div>
+            </div>
+            <div class="glass-card metric-card">
+              <div class="metric-value">250,000+</div>
+              <div class="metric-label lang-zh">受益学生</div>
+              <div class="metric-label lang-en">Engaged Students</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: The Future Competency Challenge -->
+      <section class="slide" id="slide-1">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading); color: var(--accent-orange-dark);">现代教育的破局之道：传统学术教育为何不再足够？</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading); color: var(--accent-orange-dark);">The Paradox of Modern Education: Why Traditional Academics Are Not Enough</h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md);">
+            <div class="glass-card">
+              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
+                <span class="lang-zh">⚠️ AI时代的冲击</span>
+                <span class="lang-en">⚠️ The AI Revolution</span>
+              </h3>
+              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                在由人工智能和技术快速迭代定义的时代，死记硬背正在失去价值。未来的职场和生活更需要批判性思维、创造力和适应力。
+              </p>
+              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                As AI automates routine tasks, rote memorization is losing its value. Tomorrow's leaders need competencies that algorithms cannot replicate: critical thinking, creativity, and adaptability.
+              </p>
+            </div>
+            
+            <div class="glass-card">
+              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
+                <span class="lang-zh">🚨 学习动力危机</span>
+                <span class="lang-en">🚨 The Engagement Crisis</span>
+              </h3>
+              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                传统学校偏重抽象课本理论，学生难以建立知识与现实生活的连接，从而导致学习投入度与探索积极性大幅下降。
+              </p>
+              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                Students struggle to find relevance in abstract textbook theories, leading to lower classroom engagement, passive motivation, and drop-off in active learning.
+              </p>
+            </div>
+
+            <div class="glass-card">
+              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
+                <span class="lang-zh">💆 教师重负与倦怠</span>
+                <span class="lang-en">🚨 The Teacher Burnout</span>
+              </h3>
+              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                素质教育要求引入校本特色素养课，然而一线教师缺乏标准化的框架、现成的优质教案 and 配套的实践教具，备课负担极重。
+              </p>
+              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+                Integrating practical life skills requires new frameworks. Without structured curriculum maps, dynamic slides, and lesson scripts, teachers face massive prep burnout.
+              </p>
+            </div>
+          </div>
+
+          <div class="glass-card" style="border-left: 4px solid var(--accent-orange); background: rgba(255, 142, 83, 0.08); margin-top: var(--space-sm);">
+            <p class="lang-zh" style="font-size: 1.15rem; font-weight: 600; text-align: center; margin: 0;">
+              💡 <strong>核心问题：</strong> 学校如何在不增加教师负担的前提下，无缝融入实用生活技能与未来素养？
+            </p>
+            <p class="lang-en" style="font-size: 1.15rem; font-weight: 600; text-align: center; margin: 0;">
+              💡 <strong>Key Question:</strong> How can schools seamlessly integrate practical life skills and future competencies without overwhelming their teaching staff?
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: The 6-Pillar Ecosystem -->
+      <section class="slide" id="slide-2">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">Novastars 六大支柱生态系统：让素养教育落地生根</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">The Novastars 6-Pillar Ecosystem: Making Competency Education Scalable</h2>
+          <p class="subtitle lang-zh" style="margin-bottom: var(--space-md);">我们提供全校级交钥匙解决方案，在保证高品质教学的同时，大幅减轻教师负担，打通学校、课堂与家庭。</p>
+          <p class="subtitle lang-en" style="margin-bottom: var(--space-md);">We provide a turnkey solution that works school-wide, ensuring high-quality delivery without teacher burnout.</p>
+          
+          <div class="pillar-grid">
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
+              <div class="pillar-icon">📚</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">1. 科学的课程路径</span><span class="lang-en">1. Researched Curriculum</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">基于儿童发展心理学研发的基础与专题应用双轨课程。</span><span class="lang-en">Structured pathways divided into Foundation and Applied modules.</span></p>
+            </div>
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
+              <div class="pillar-icon">🧩</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">2. 互动学生资源</span><span class="lang-en">2. Student Resources</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">包含实物绘本与《素养实践手卷》（如下图）。</span><span class="lang-en">Features hands-on kits and physical student workbooks.</span></p>
+              <!-- Handbook image from PPTX -->
+              <div style="margin-top: 8px; text-align: center;">
+                <img src="assets/images/image205.jpeg" alt="Handbook" style="width: 100%; max-width: 160px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--glass-border);">
+              </div>
+            </div>
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-purple);">
+              <div class="pillar-icon">💻</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">3. 一站式教师平台</span><span class="lang-en">3. Teacher Portal</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">集成动态电子课件与教学逐字稿，实现零负担轻松上课。</span><span class="lang-en">Provides zero-prep teaching guides and multimedia slides.</span></p>
+            </div>
+          </div>
+          <div class="pillar-grid" style="margin-top: var(--space-sm);">
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-coral);">
+              <div class="pillar-icon">🎓</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">4. 持续的专业发展</span><span class="lang-en">4. Professional Dev</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">由乐高与剑桥认证教研团队主导的系统化师资工作坊。</span><span class="lang-en">Ongoing face-to-face workshops and continuous instructional coaching.</span></p>
+            </div>
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-gold);">
+              <div class="pillar-icon">📊</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">5. 数据驱动评估</span><span class="lang-en">5. Data Assessment</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">表现性评量与多维度量规，记录可观察的学生行为变化。</span><span class="lang-en">Rubrics monitoring student behavioral changes.</span></p>
+            </div>
+            <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
+              <div class="pillar-icon">🏡</div>
+              <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">6. 家校共育系统</span><span class="lang-en">6. Parent System</span></h3>
+              <p class="pillar-desc"><span class="lang-zh">每节课后派发亲子活动卡，将素养提升延展至家庭环境。</span><span class="lang-en">Bespoke home-learning extensions bridging classroom gains.</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Educational Philosophy & Learning Cycle -->
+      <section class="slide" id="slide-3">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">做中学：体验式学习与主动探究闭环</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">The Experiential Learning Cycle: From Classroom to Real World</h2>
+          
+          <div class="glass-card" style="background: rgba(0, 206, 201, 0.05); border-left: 4px solid var(--accent-teal); margin-bottom: var(--space-md);">
+            <p class="lang-zh" style="font-size: 1rem; line-height: 1.6; margin: 0; color: var(--text-primary);">
+              <strong>教学融合底蕴：</strong> 深度融合 <strong>乐高教育 (LEGO Education) 4C 体验式学习框架</strong> 与 <strong>剑桥大学国际考评 (Cambridge Active Learning) 主动学习框架</strong>，让学生成为探究的主角，教师成为课堂的引导者。
+            </p>
+            <p class="lang-en" style="font-size: 1rem; line-height: 1.6; margin: 0; color: var(--text-primary);">
+              <strong>Pedagogical Fusion:</strong> Deeply integrates the <strong>LEGO Education 4C Experiential Learning Framework</strong> and the <strong>Cambridge Active Learning Framework</strong>. Shifts the classroom from passive listening to active creation.
+            </p>
+          </div>
+
+          <div class="cycle-container">
+            <div class="glass-card cycle-step">
+              <div class="cycle-num">1</div>
+              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">参与 (Engage)</span><span class="lang-en">Engage</span></h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">互动故事与游戏引入，激发好奇</span><span class="lang-en">Interactive storytelling</span></p>
+            </div>
+            <div class="glass-card cycle-step">
+              <div class="cycle-num" style="background: var(--accent-purple); box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);">2</div>
+              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">探索 (Explore)</span><span class="lang-en">Explore</span></h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">引导探究式讨论与批判思维</span><span class="lang-en">Facilitated discussion</span></p>
+            </div>
+            <div class="glass-card cycle-step">
+              <div class="cycle-num" style="background: var(--accent-coral); box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);">3</div>
+              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">阐释 (Explain)</span><span class="lang-en">Explain</span></h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">梳理核心概念，提炼方法路径</span><span class="lang-en">Actionable frameworks</span></p>
+            </div>
+            <div class="glass-card cycle-step">
+              <div class="cycle-num" style="background: var(--accent-teal); box-shadow: 0 0 15px rgba(0, 206, 201, 0.4);">4</div>
+              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">拓展 (Elaborate)</span><span class="lang-en">Elaborate</span></h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">动手实践、角色扮演与项目式建构</span><span class="lang-en">Hands-on PBL & role-play</span></p>
+            </div>
+            <div class="glass-card cycle-step">
+              <div class="cycle-num" style="background: var(--accent-orange); box-shadow: 0 0 15px rgba(255, 142, 83, 0.4);">5</div>
+              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">评估 (Evaluate)</span><span class="lang-en">Evaluate</span></h4>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">表现性评量与自我反思认知闭环</span><span class="lang-en">Continuous feedback loop</span></p>
+            </div>
+          </div>
+
+          <!-- Classroom Photos from slide 41 and 22 -->
+          <div style="margin-top: var(--space-md);">
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: var(--space-xs); text-align: center;"><span class="lang-zh">📸 真实的课堂教学与探究式学习体验</span><span class="lang-en">📸 Active Classroom Environments</span></div>
+            <div style="display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding-bottom: 10px;">
+              <img src="assets/images/image151.jpeg" alt="Primary Classroom 1" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
+              <img src="assets/images/image152.jpeg" alt="Primary Classroom 2" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
+              <img src="assets/images/image153.jpeg" alt="Primary Classroom 3" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
+              <img src="assets/images/image86.png" alt="Preschool Activity" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Curriculum Pathways & Competencies -->
+      <section class="slide" id="slide-4">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">双轨制课程路径 & 核心素养对标</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">Dual-Track Curriculum Pathway & Competency Matrix</h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-sm);">
+            <div class="glass-card" style="border-top: 4px solid var(--accent-orange);">
+              <h3 style="font-family: var(--font-heading); color: var(--accent-orange-dark); font-size: 1.25rem; margin-bottom: 10px;">
+                <span class="lang-zh">🌱 基础素养 (Foundation Competencies)</span>
+                <span class="lang-en">🌱 Foundation Competencies</span>
+              </h3>
+              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">侧重于儿童底层的脑力开发、认知逻辑与社会情感发展（Social-Emotional Learning）。</p>
+              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Focused on long-term cognitive abilities, logical reasoning, and social-emotional development.</p>
+              <ul class="curriculum-list" style="font-size: 0.85rem;">
+                <li><span class="lang-zh">逻辑推理与观察思考</span><span class="lang-en">Logical reasoning & observation</span></li>
+                <li><span class="lang-zh">倾听、沟通与公共演讲</span><span class="lang-en">Communication & presentation</span></li>
+                <li><span class="lang-zh">自我控制与情绪调节</span><span class="lang-en">Emotional regulation</span></li>
+                <li><span class="lang-zh">团队协作与共情责任</span><span class="lang-en">Teamwork & empathy</span></li>
+              </ul>
+            </div>
+
+            <div class="glass-card" style="border-top: 4px solid var(--accent-teal);">
+              <h3 style="font-family: var(--font-heading); color: var(--accent-teal); font-size: 1.25rem; margin-bottom: 10px;">
+                <span class="lang-zh">🛡️ 专题应用素养 (Applied Thematic Modules)</span>
+                <span class="lang-en">🛡️ Applied Thematic Modules</span>
+              </h3>
+              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">侧重于在真实、高风险（High-stakes）的生活场景下立即付诸行动的生存与自救技能。</p>
+              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Focused on high-stakes, practical life skills and safety execution in immediate scenarios.</p>
+              <ul class="curriculum-list" style="font-size: 0.85rem; margin-bottom: 15px;">
+                <li><strong><span class="lang-zh">被困锁闭车内逃生技能</span><span class="lang-en">Locked Car Escape (Survival)</span></strong></li>
+                <li><strong><span class="lang-zh">防拐骗、防绑架防御机制</span><span class="lang-en">Anti-Abduction & Kidnapping Prevention</span></strong></li>
+                <li><span class="lang-zh">防溺水与水域安全自救</span><span class="lang-en">Water safety & self-rescue</span></li>
+                <li><span class="lang-zh">火灾逃生与应急安全演练</span><span class="lang-en">Fire emergencies</span></li>
+              </ul>
+              
+              <!-- Car simulation images from Slide 38 -->
+              <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;"><span class="lang-zh">🚗 实战演练：模拟车内逃生与自救</span><span class="lang-en">🚗 Simulated Escape Dashboard Kits</span></div>
+              <div class="image-gallery">
+                <img src="assets/images/image137.png" alt="Simulated Car dashboard model">
+                <img src="assets/images/image141.jpeg" alt="Kids pushing horn safety training">
+                <img src="assets/images/image142.jpeg" alt="Kids practicing escape">
+              </div>
+            </div>
+
+            <div class="glass-card" style="border-top: 4px solid var(--accent-purple);">
+              <h3 style="font-family: var(--font-heading); color: var(--accent-purple); font-size: 1.25rem; margin-bottom: 10px;">
+                <span class="lang-zh">🎯 中国新课标核心素养对标</span>
+                <span class="lang-en">🎯 China 2022 Core Competency Mapping</span>
+              </h3>
+              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">与教育部《义务教育课程方案（2022版）》的核心素养三大板块高度对应：</p>
+              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Seamlessly maps to requirements of local educational inspections:</p>
+              <ul class="curriculum-list" style="font-size: 0.85rem;">
+                <li><span class="lang-zh"><strong>文化基础：</strong> 逻辑推理、科学思维对标“科学精神”</span><span class="lang-en">Scientific spirit & basic theory</span></li>
+                <li><span class="lang-zh"><strong>自主发展：</strong> 情绪调节、自救技能对标“健康生活”</span><span class="lang-en">Healthy lifestyle & self-management</span></li>
+                <li><span class="lang-zh"><strong>社会参与：</strong> 团队协作、公共规则对标“责任担当”</span><span class="lang-en">Social participation & teamwork</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Intelligent Digital Platform -->
+      <section class="slide" id="slide-5">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">数字化教研生态：赋能教师，降低门槛</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">Intelligent Digital Platform: Empowering Teachers, Lowering Barriers</h2>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-md); align-items: center;">
+            <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+              <div class="glass-card" style="border-left: 4px solid var(--accent-orange); padding: var(--space-sm);">
+                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-orange-dark);"><span class="lang-zh">🚀 极简备课系统 (Zero-Prep Plans)</span><span class="lang-en">🚀 Zero-Prep Lesson Plans</span></h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+                  <span class="lang-zh">包含完整电子白板动态课件、教师讲授脚本（逐字稿）、教具指引，让零经验教师也能实现高水准授课。</span>
+                  <span class="lang-en">Ready-to-teach interactive slides, script, and activity guides designed to eliminate teacher prep strain.</span>
+                </p>
+              </div>
+              <div class="glass-card" style="border-left: 4px solid var(--accent-teal); padding: var(--space-sm);">
+                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-teal);"><span class="lang-zh">🤖 AI 助手与自动化报告 (AI-Powered Insights)</span><span class="lang-en">🤖 AI-Powered Insights</span></h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+                  <span class="lang-zh">智能生成个性化评语和表现性评估报告（Performance Report），一键导出直接与家长分享。</span>
+                  <span class="lang-en">Generate automated feedback, rubrics, and detailed developmental progress reports for parents.</span>
+                </p>
+              </div>
+              <div class="glass-card" style="border-left: 4px solid var(--accent-purple); padding: var(--space-sm);">
+                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-purple);"><span class="lang-zh">🏡 云端家校系统 (Home Connection)</span><span class="lang-en">🏡 Cloud Home Connection</span></h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+                  <span class="lang-zh">每节课后自动下发亲子共读信，提供家庭实操微挑战，强化家校共育闭环。</span>
+                  <span class="lang-en">Send structured parent communication letters and extension activities to reinforce classroom gains at home.</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Platform Actual Screenshot from slide 37 -->
+            <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);"><span class="lang-zh">💻 教师电子教学软件控制后台</span><span class="lang-en">💻 Electronic Lecture Software & Slides Portal</span></div>
+              <img src="assets/images/image136.png" alt="Teacher Electronic lecture software mockup" style="width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: var(--radius-md); border: 2px solid var(--glass-border); box-shadow: var(--glass-shadow);">
+              <div style="font-size: 0.75rem; text-align: center; color: var(--text-muted);"><span class="lang-zh">云端授课互动大屏与教师指引界面</span><span class="lang-en">Interactive whiteboard slide delivery layout</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Strategic Partners & Cooperation -->
+      <section class="slide" id="slide-6">
+        <div class="slide-content">
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading); text-align: center;">🤝 灵活多样的合作模式</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading); text-align: center;">Flexible Partnership Models & Contact</h2>
+          
+          <div style="display: flex; justify-content: center; width: 100%; margin-top: var(--space-md);">
+            <div class="glass-card" style="display: flex; flex-direction: column; gap: var(--space-sm); border: 1px solid rgba(255, 142, 83, 0.3); max-width: 600px; width: 100%;">
+              <h3 style="color: var(--accent-orange-dark); font-family: var(--font-heading); font-size: 1.3rem; margin-top: 0; margin-bottom: 5px; text-align: center;">
+                <span class="lang-zh">合作方案与联系方式</span>
+                <span class="lang-en">Cooperation & Contact</span>
+              </h3>
+              
+              <ul class="curriculum-list" style="font-size: 0.95rem; margin-bottom: var(--space-sm); line-height: 1.8;">
+                <li><span class="lang-zh"><strong>课程资源授权引入：</strong> 即插即用课程资源包，全面融入日常特色课表。</span><span class="lang-en">Curriculum licensing: plug-and-play modules for daily schedules.</span></li>
+                <li><span class="lang-zh"><strong>师资培训与考核体系 (TTT)：</strong> 为贵校教师提供全面培训与官方认证，打造骨干名师团队。</span><span class="lang-en">Educator training & certification: comprehensive pedagogical guidance.</span></li>
+                <li><span class="lang-zh"><strong>共建联合体验中心：</strong> 在校园内建立专属“未来素养与儿童安全实验室”。</span><span class="lang-en">Co-branded labs: establish dedicated safety experience zones on campus.</span></li>
+              </ul>
+              
+              <div style="display: flex; gap: var(--space-lg); align-items: center; justify-content: center; border-top: 1px solid var(--glass-border); padding-top: var(--space-sm); margin-top: var(--space-sm);">
+                <div class="qr-container" style="width: 90px; height: 90px; padding: 4px; flex-shrink: 0;">
+                  <div class="qr-mock" style="width: 80px; height: 80px; background-size: 8px 8px;">
+                    <div class="qr-center-eye" style="width: 16px; height: 16px;"></div>
+                  </div>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+                  <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 4px;"><span class="lang-zh">扫码与课程专家咨询：</span><span class="lang-en">Talk to our experts:</span></div>
+                  <div>📧 info@novastars.vn</div>
+                  <div>📞 +84 904 88 1010</div>
+                  <div>🌐 www.novastars.vn</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- JavaScript Interaction -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const links = document.querySelectorAll('.nav-link');
+
+    // Slide transition controller
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      
+      // Remove active states
+      slides[currentSlide].classList.remove('active');
+      links[currentSlide].classList.remove('active');
+      
+      // Add active states
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      links[currentSlide].classList.add('active');
+      
+      // Scroll sidebar link into view if mobile scrollable
+      links[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // Keyboard controls (Arrows for presentation)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        goToSlide((currentSlide + 1) % slides.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSlide((currentSlide - 1 + slides.length) % slides.length);
+      }
+    });
+
+    // Language switcher
+    function setLang(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      if (lang === 'zh') {
+        document.getElementById('btn-zh').classList.add('active');
+      } else {
+        document.getElementById('btn-en').classList.add('active');
+      }
+    }
+
+    // Theme toggler (Dark / Light mode)
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nextTheme);
+    }
+    
+    // Auto initialize to Chinese default
+    document.addEventListener("DOMContentLoaded", () => {
+      setLang('zh');
+    });
+  </script>
+</body>
+</html>
