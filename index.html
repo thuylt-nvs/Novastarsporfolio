@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh" data-theme="light">
-<!-- Novastars Portfolio v1.0.1 -->
+<!-- Novastars Portfolio v1.1 - Fully Integrated Enhancement -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,274 +11,59 @@
     /* Language Visibility Control */
     html[lang="en"] .lang-zh { display: none !important; }
     html[lang="zh"] .lang-en { display: none !important; }
-    
-    /* Interactive Cycles & Navigation Tweaks */
-    .cycle-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: var(--space-sm);
-      width: 100%;
-      margin-top: var(--space-md);
-    }
-    
-    .cycle-step {
-      text-align: center;
-      padding: var(--space-sm);
-      position: relative;
-    }
-    
-    .cycle-num {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent-orange);
-      color: white;
+
+    /* Custom Chart & Testimonial Styling for Main Portfolio */
+    .bar-comparison {
       display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .bar-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 50px;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto var(--space-xs) auto;
-      font-weight: 700;
-      box-shadow: 0 0 15px rgba(255, 142, 83, 0.4);
-    }
-    
-    .cycle-step:not(:last-child)::after {
-      content: '→';
-      position: absolute;
-      right: -10px;
-      top: 25px;
-      font-size: 1.5rem;
-      color: var(--text-muted);
-    }
-    
-    @media (max-width: 768px) {
-      .cycle-step:not(:last-child)::after {
-        content: '↓';
-        right: 50%;
-        bottom: -15px;
-        top: auto;
-        transform: translateX(50%);
-      }
-      .cycle-container {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-      }
+      gap: 8px;
+      font-size: 0.8rem;
     }
 
-    /* Platform Mockup Styles */
-    .mockup-container {
-      width: 100%;
-      height: 350px;
-      background: #ffffff;
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-md);
+    .bar-track {
+      background: rgba(0,0,0,0.06);
+      height: 12px;
+      border-radius: 6px;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
-      box-shadow: var(--glass-shadow);
     }
     
-    [data-theme="dark"] .mockup-container {
-      background: #151518;
+    .bar-fill-after {
+      background: var(--grad-orange);
+      height: 100%;
     }
 
-    .mockup-header {
-      background: rgba(0, 0, 0, 0.03);
-      height: 40px;
-      border-bottom: 1px solid var(--glass-border);
-      display: flex;
-      align-items: center;
-      padding: 0 var(--space-sm);
-      gap: 6px;
-    }
-    
-    [data-theme="dark"] .mockup-header {
-      background: #1c1c21;
-    }
-
-    .mockup-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .dot-red { background: #ff453a; }
-    .dot-yellow { background: #ffd60a; }
-    .dot-green { background: #30d158; }
-
-    .mockup-body {
-      flex-grow: 1;
-      display: flex;
-      padding: var(--space-sm);
-      gap: var(--space-sm);
-      background: inherit;
-    }
-
-    .mockup-sidebar {
-      width: 60px;
-      background: rgba(0, 0, 0, 0.02);
-      border-radius: var(--radius-sm);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-sm) 0;
-      border: 1px solid var(--glass-border);
-    }
-    
-    [data-theme="dark"] .mockup-sidebar {
-      background: #1c1c21;
-    }
-
-    .mockup-sidebar-item {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.05);
-    }
-    
-    [data-theme="dark"] .mockup-sidebar-item {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .mockup-sidebar-item.active {
-      background: var(--accent-orange);
-    }
-
-    .mockup-content {
-      flex-grow: 1;
+    .testimonial-mini-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: var(--space-sm);
+      margin-top: var(--space-sm);
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 5px;
     }
 
-    .mockup-card {
-      background: rgba(0,0,0,0.01);
+    .testimonial-mini-card {
+      background: rgba(255, 255, 255, 0.7);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
-      padding: var(--space-sm);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: var(--space-xs);
-    }
-    
-    [data-theme="dark"] .mockup-card {
-      background: rgba(255, 255, 255, 0.02);
+      justify-content: space-between;
     }
 
-    .mockup-bar {
-      height: 12px;
-      border-radius: 4px;
-      background: rgba(0,0,0,0.05);
-      width: 100%;
-    }
-    
-    [data-theme="dark"] .mockup-bar {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .mockup-chart {
-      flex-grow: 1;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      padding: var(--space-sm) 0;
-    }
-
-    .chart-col {
-      flex-grow: 1;
-      background: var(--accent-orange);
-      border-radius: 4px 4px 0 0;
-      opacity: 0.7;
-      transition: height 0.5s ease;
-    }
-    
-    .chart-col:nth-child(2) { background: var(--accent-teal); }
-    .chart-col:nth-child(3) { background: var(--accent-purple); }
-
-    /* Custom QR code mockup */
-    .qr-container {
-      width: 120px;
-      height: 120px;
-      background: white;
-      border-radius: var(--radius-sm);
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid var(--glass-border);
-    }
-
-    .qr-mock {
-      width: 100px;
-      height: 100px;
-      background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
-                        linear-gradient(-45deg, #000 25%, transparent 25%), 
-                        linear-gradient(45deg, transparent 75%, #000 75%), 
-                        linear-gradient(-45deg, transparent 75%, #000 75%);
-      background-size: 10px 10px;
-      background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
-      border: 4px solid black;
-      position: relative;
-    }
-
-    .qr-mock::before {
-      content: '';
-      position: absolute;
-      top: 4px; left: 4px; width: 20px; height: 20px;
-      border: 4px solid black; background: white;
-    }
-
-    .qr-mock::after {
-      content: '';
-      position: absolute;
-      bottom: 4px; left: 4px; width: 20px; height: 20px;
-      border: 4px solid black; background: white;
-    }
-
-    .qr-center-eye {
-      position: absolute;
-      top: 4px; right: 4px; width: 20px; height: 20px;
-      border: 4px solid black; background: white;
-    }
-
-    /* Sub-list for structured elements */
-    .curriculum-list {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    .curriculum-list li {
-      margin-bottom: 8px;
-      position: relative;
-      padding-left: 20px;
-    }
-    .curriculum-list li::before {
-      content: "•";
-      color: var(--accent-orange);
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-    }
-
-    /* Image Gallery CSS */
-    .image-gallery {
-      display: flex;
-      gap: var(--space-xs);
-      overflow-x: auto;
-      padding: var(--space-xs) 0;
-      scrollbar-width: thin;
-    }
-    .image-gallery img {
-      width: 120px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: var(--radius-sm);
-      border: 2px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      flex-shrink: 0;
-      transition: transform var(--transition-fast);
-    }
-    .image-gallery img:hover {
-      transform: scale(1.05);
-      border-color: var(--accent-orange);
+    [data-theme="dark"] .testimonial-mini-card {
+      background: rgba(20, 20, 25, 0.7);
     }
   </style>
 </head>
@@ -300,10 +85,10 @@
         <li><a class="nav-link active" onclick="goToSlide(0)"><span class="lang-zh">1. 封面与愿景</span><span class="lang-en">1. Hero & Vision</span></a></li>
         <li><a class="nav-link" onclick="goToSlide(1)"><span class="lang-zh">2. 未来的挑战</span><span class="lang-en">2. Future Challenge</span></a></li>
         <li><a class="nav-link" onclick="goToSlide(2)"><span class="lang-zh">3. 六大支柱生态</span><span class="lang-en">3. 6-Pillar Ecosystem</span></a></li>
-        <li><a class="nav-link" onclick="goToSlide(3)"><span class="lang-zh">4. 教学闭环</span><span class="lang-en">4. Pedagogical Cycle</span></a></li>
-        <li><a class="nav-link" onclick="goToSlide(4)"><span class="lang-zh">5. 双轨制课程路径</span><span class="lang-en">5. Pathway & Matrix</span></a></li>
-        <li><a class="nav-link" onclick="goToSlide(5)"><span class="lang-zh">6. 数字化平台</span><span class="lang-en">6. Digital Platform</span></a></li>
-        <li><a class="nav-link" onclick="goToSlide(6)"><span class="lang-zh">7. 合作模式与联系</span><span class="lang-en">7. Partnership & Contact</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(3)"><span class="lang-zh">4. 教学闭环与图表</span><span class="lang-en">4. Pedagogical Cycle</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(4)"><span class="lang-zh">5. 双轨路径与成效</span><span class="lang-en">5. Pathway & Matrix</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(5)"><span class="lang-zh">6. 数字化与备课</span><span class="lang-en">6. Digital Platform</span></a></li>
+        <li><a class="nav-link" onclick="goToSlide(6)"><span class="lang-zh">7. 标杆评价与合作</span><span class="lang-en">7. Testimonials & Contact</span></a></li>
       </ul>
       
       <div style="margin-top: auto; display: flex; flex-direction: column; gap: var(--space-sm);">
@@ -316,9 +101,9 @@
         <button onclick="toggleTheme()" style="background: transparent; border: 1px solid var(--glass-border); padding: 8px; border-radius: var(--radius-full); color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; width: 100%;">
           <span class="lang-zh">🌓 切换主题</span><span class="lang-en">🌓 Toggle Theme</span>
         </button>
-        <!-- Link to Improvement Page -->
-        <a href="improvement.html" style="text-decoration: none; text-align: center; background: rgba(255, 142, 83, 0.15); border: 1px solid var(--accent-orange); color: var(--accent-orange-dark); padding: 8px; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 700; display: block;">
-          <span class="lang-zh">✨ 查看内容做实与增强提案</span><span class="lang-en">✨ View Enhancement Proposals</span>
+        <!-- Link to Proposal Overview -->
+        <a href="improvement.html" style="text-decoration: none; text-align: center; background: rgba(255, 142, 83, 0.15); border: 1px solid var(--accent-orange); color: var(--accent-orange-dark); padding: 6px; border-radius: var(--radius-md); font-size: 0.75rem; font-weight: 700; display: block;">
+          <span class="lang-zh">✨ 查看增强提案明细</span><span class="lang-en">✨ View Proposals Page</span>
         </a>
       </div>
     </aside>
@@ -329,17 +114,18 @@
       <!-- Slide 1: Hero & Vision -->
       <section class="slide active" id="slide-0">
         <div class="slide-content animate-fade-up">
-          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-md); align-items: center;">
+          <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-md); align-items: center;">
             <div>
-              <div class="tag tag-expert" style="margin-bottom: var(--space-sm);">13 YEARS OF EDUCATION EXCELLENCE | 13年教育底蕴</div>
-              <h1 class="title-hero lang-zh" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-sm); font-size: 3rem;">塑造面向未来的全球公民</h1>
-              <h1 class="title-hero lang-en" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-sm); font-size: 3rem;">Shaping Future-Ready Citizens</h1>
-              <p class="subtitle lang-zh" style="font-size: 1.1rem; line-height: 1.6;">通过全方位的素养教育生态系统，跨越传统学术教育与真实世界成功之间的鸿沟。</p>
-              <p class="subtitle lang-en" style="font-size: 1.1rem; line-height: 1.6;">Redefining K-12 education through a holistic competency-based ecosystem bridging academics and real-world success.</p>
+              <div class="tag tag-expert" style="margin-bottom: var(--space-xs);">13 YEARS OF EDUCATION EXCELLENCE | 13年教育底蕴</div>
+              <h1 class="title-hero lang-zh" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-xs); font-size: 2.8rem;">塑造面向未来的全球公民</h1>
+              <h1 class="title-hero lang-en" style="background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: var(--space-xs); font-size: 2.8rem;">Shaping Future-Ready Citizens</h1>
+              <p class="subtitle lang-zh" style="font-size: 1rem; line-height: 1.5; margin-bottom: var(--space-sm);">通过全方位的素养教育生态系统，跨越传统学术教育与真实世界成功之间的鸿沟。</p>
+              <p class="subtitle lang-en" style="font-size: 1rem; line-height: 1.5; margin-bottom: var(--space-sm);">Redefining K-12 education through a holistic competency-based ecosystem bridging academics and real-world success.</p>
             </div>
-            <!-- Slide 1 image from PPTX -->
-            <div style="position: relative;">
-              <img src="assets/images/image12.jpeg" alt="Novastars Classroom" style="width: 100%; height: auto; max-height: 280px; object-fit: cover; border-radius: var(--radius-md); border: 4px solid white; box-shadow: var(--glass-shadow);">
+            <!-- Slide 1 Image Gallery -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <img src="assets/images/image12.jpeg" alt="Novastars Classroom" style="width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid white; box-shadow: var(--glass-shadow);">
+              <img src="assets/images/hero_kids_stem.png" alt="AI Generated STEAM Lab" style="width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid var(--accent-orange); box-shadow: var(--glass-shadow);">
             </div>
           </div>
 
@@ -370,53 +156,65 @@
           <h2 class="title-slide lang-zh" style="font-family: var(--font-heading); color: var(--accent-orange-dark);">现代教育的破局之道：传统学术教育为何不再足够？</h2>
           <h2 class="title-slide lang-en" style="font-family: var(--font-heading); color: var(--accent-orange-dark);">The Paradox of Modern Education: Why Traditional Academics Are Not Enough</h2>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-md);">
-            <div class="glass-card">
-              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
-                <span class="lang-zh">⚠️ AI时代的冲击</span>
-                <span class="lang-en">⚠️ The AI Revolution</span>
-              </h3>
-              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                在由人工智能和技术快速迭代定义的时代，死记硬背正在失去价值。未来的职场和生活更需要批判性思维、创造力和适应力。
-              </p>
-              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                As AI automates routine tasks, rote memorization is losing its value. Tomorrow's leaders need competencies that algorithms cannot replicate: critical thinking, creativity, and adaptability.
-              </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-sm);">
+            <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: var(--accent-coral); margin-bottom: 6px; font-size: 1.15rem; font-family: var(--font-heading);">
+                  <span class="lang-zh">⚠️ AI时代的冲击</span>
+                  <span class="lang-en">⚠️ The AI Revolution</span>
+                </h3>
+                <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  死记硬背正在失去价值。未来的职场更需要批判思维、创造力和适应力。
+                </p>
+                <p class="lang-en" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  Rote memorization is losing value. Tomorrow's leaders need critical thinking and adaptability.
+                </p>
+              </div>
+              <img src="assets/images/challenge_distracted_kids.png" alt="Engagement Crisis" style="width: 100%; height: 100px; object-fit: cover; border-radius: 6px; margin-top: 8px; border: 1px solid var(--glass-border);">
             </div>
             
-            <div class="glass-card">
-              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
-                <span class="lang-zh">🚨 学习动力危机</span>
-                <span class="lang-en">🚨 The Engagement Crisis</span>
-              </h3>
-              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                传统学校偏重抽象课本理论，学生难以建立知识与现实生活的连接，从而导致学习投入度与探索积极性大幅下降。
-              </p>
-              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                Students struggle to find relevance in abstract textbook theories, leading to lower classroom engagement, passive motivation, and drop-off in active learning.
-              </p>
+            <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: var(--accent-coral); margin-bottom: 6px; font-size: 1.15rem; font-family: var(--font-heading);">
+                  <span class="lang-zh">🚨 学习动力危机</span>
+                  <span class="lang-en">🚨 The Engagement Crisis</span>
+                </h3>
+                <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  传统课本偏重抽象理论，学生难以建立现实连接，导致学习投入度急剧下降。
+                </p>
+                <p class="lang-en" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  Abstract textbook theories cause low engagement and drop-off in active curiosity.
+                </p>
+              </div>
+              <div style="background: rgba(255,107,107,0.1); border-radius: 6px; padding: 8px; text-align: center; margin-top: 8px;">
+                <span class="lang-zh" style="font-size: 0.8rem; font-weight: 700; color: var(--accent-coral);">传统被动听讲 ➔ 仅保留 5% 知识</span>
+                <span class="lang-en" style="font-size: 0.8rem; font-weight: 700; color: var(--accent-coral);">Passive Lecture ➔ 5% Retention</span>
+              </div>
             </div>
 
-            <div class="glass-card">
-              <h3 style="color: var(--accent-coral); margin-bottom: var(--space-sm); font-size: 1.3rem; font-family: var(--font-heading);">
-                <span class="lang-zh">💆 教师重负与倦怠</span>
-                <span class="lang-en">🚨 The Teacher Burnout</span>
-              </h3>
-              <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                素质教育要求引入校本特色素养课，然而一线教师缺乏标准化的框架、现成的优质教案 and 配套的实践教具，备课负担极重。
-              </p>
-              <p class="lang-en" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-                Integrating practical life skills requires new frameworks. Without structured curriculum maps, dynamic slides, and lesson scripts, teachers face massive prep burnout.
-              </p>
+            <div class="glass-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: var(--accent-coral); margin-bottom: 6px; font-size: 1.15rem; font-family: var(--font-heading);">
+                  <span class="lang-zh">💆 教师重负与倦怠</span>
+                  <span class="lang-en">🚨 The Teacher Burnout</span>
+                </h3>
+                <p class="lang-zh" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  素质教育要求引入校本特色课，一线教师缺乏标准化教案，备课负担极重。
+                </p>
+                <p class="lang-en" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                  Without turnkey tools, teachers spend 3+ hours daily searching and designing lesson slides.
+                </p>
+              </div>
+              <img src="assets/images/challenge_teacher_prep.png" alt="Teacher Burnout" style="width: 100%; height: 100px; object-fit: cover; border-radius: 6px; margin-top: 8px; border: 1px solid var(--glass-border);">
             </div>
           </div>
 
-          <div class="glass-card" style="border-left: 4px solid var(--accent-orange); background: rgba(255, 142, 83, 0.08); margin-top: var(--space-sm);">
-            <p class="lang-zh" style="font-size: 1.15rem; font-weight: 600; text-align: center; margin: 0;">
+          <div class="glass-card" style="border-left: 4px solid var(--accent-orange); background: rgba(255, 142, 83, 0.08); margin-top: var(--space-xs); padding: var(--space-xs) var(--space-sm);">
+            <p class="lang-zh" style="font-size: 1rem; font-weight: 600; text-align: center; margin: 0;">
               💡 <strong>核心问题：</strong> 学校如何在不增加教师负担的前提下，无缝融入实用生活技能与未来素养？
             </p>
-            <p class="lang-en" style="font-size: 1.15rem; font-weight: 600; text-align: center; margin: 0;">
-              💡 <strong>Key Question:</strong> How can schools seamlessly integrate practical life skills and future competencies without overwhelming their teaching staff?
+            <p class="lang-en" style="font-size: 1rem; font-weight: 600; text-align: center; margin: 0;">
+              💡 <strong>Key Question:</strong> How can schools seamlessly integrate life skills and future competencies without overwhelming teachers?
             </p>
           </div>
         </div>
@@ -427,45 +225,45 @@
         <div class="slide-content">
           <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">Novastars 六大支柱生态系统：让素养教育落地生根</h2>
           <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">The Novastars 6-Pillar Ecosystem: Making Competency Education Scalable</h2>
-          <p class="subtitle lang-zh" style="margin-bottom: var(--space-md);">我们提供全校级交钥匙解决方案，在保证高品质教学的同时，大幅减轻教师负担，打通学校、课堂与家庭。</p>
-          <p class="subtitle lang-en" style="margin-bottom: var(--space-md);">We provide a turnkey solution that works school-wide, ensuring high-quality delivery without teacher burnout.</p>
+          <p class="subtitle lang-zh" style="margin-bottom: var(--space-xs);">全校级交钥匙解决方案，保证高品质教学的同时，大幅减轻教师负担，打通学校与家庭。</p>
+          <p class="subtitle lang-en" style="margin-bottom: var(--space-xs);">A turnkey solution that works school-wide, ensuring high-quality delivery without teacher burnout.</p>
           
           <div class="pillar-grid">
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
               <div class="pillar-icon">📚</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">1. 科学的课程路径</span><span class="lang-en">1. Researched Curriculum</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">基于儿童发展心理学研发的基础与专题应用双轨课程。</span><span class="lang-en">Structured pathways divided into Foundation and Applied modules.</span></p>
+              <p class="pillar-desc"><span class="lang-zh">基础与专题应用双轨课程。</span><span class="lang-en">Foundation and Applied modules.</span></p>
             </div>
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
               <div class="pillar-icon">🧩</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">2. 互动学生资源</span><span class="lang-en">2. Student Resources</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">包含实物绘本与《素养实践手卷》（如下图）。</span><span class="lang-en">Features hands-on kits and physical student workbooks.</span></p>
-              <!-- Handbook image from PPTX -->
-              <div style="margin-top: 8px; text-align: center;">
-                <img src="assets/images/image205.jpeg" alt="Handbook" style="width: 100%; max-width: 160px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--glass-border);">
+              <p class="pillar-desc"><span class="lang-zh">实物绘本与《素养实践手卷》。</span><span class="lang-en">Hands-on kits & workbooks.</span></p>
+              <div style="display: flex; gap: 4px; margin-top: 6px;">
+                <img src="assets/images/image205.jpeg" alt="Handbook" style="width: 50%; height: 50px; object-fit: cover; border-radius: 4px;">
+                <img src="assets/images/pillar_resources_handbook.png" alt="AI Student Handbook" style="width: 50%; height: 50px; object-fit: cover; border-radius: 4px; border: 1px solid var(--accent-orange);">
               </div>
             </div>
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-purple);">
               <div class="pillar-icon">💻</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">3. 一站式教师平台</span><span class="lang-en">3. Teacher Portal</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">集成动态电子课件与教学逐字稿，实现零负担轻松上课。</span><span class="lang-en">Provides zero-prep teaching guides and multimedia slides.</span></p>
+              <p class="pillar-desc"><span class="lang-zh">动态课件与逐字稿，零负担上课。</span><span class="lang-en">Zero-prep guides and slides.</span></p>
             </div>
           </div>
-          <div class="pillar-grid" style="margin-top: var(--space-sm);">
+          <div class="pillar-grid" style="margin-top: var(--space-xs);">
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-coral);">
               <div class="pillar-icon">🎓</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">4. 持续的专业发展</span><span class="lang-en">4. Professional Dev</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">由乐高与剑桥认证教研团队主导的系统化师资工作坊。</span><span class="lang-en">Ongoing face-to-face workshops and continuous instructional coaching.</span></p>
+              <p class="pillar-desc"><span class="lang-zh">乐高与剑桥团队主导的师资工作坊。</span><span class="lang-en">Instructional coaching workshops.</span></p>
             </div>
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-gold);">
               <div class="pillar-icon">📊</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">5. 数据驱动评估</span><span class="lang-en">5. Data Assessment</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">表现性评量与多维度量规，记录可观察的学生行为变化。</span><span class="lang-en">Rubrics monitoring student behavioral changes.</span></p>
+              <p class="pillar-desc"><span class="lang-zh">表现性评量，记录行为变化。</span><span class="lang-en">Rubrics monitoring progress.</span></p>
             </div>
             <div class="glass-card pillar-card" style="--accent-teal: var(--accent-orange);">
               <div class="pillar-icon">🏡</div>
               <h3 class="pillar-title" style="font-family: var(--font-heading);"><span class="lang-zh">6. 家校共育系统</span><span class="lang-en">6. Parent System</span></h3>
-              <p class="pillar-desc"><span class="lang-zh">每节课后派发亲子活动卡，将素养提升延展至家庭环境。</span><span class="lang-en">Bespoke home-learning extensions bridging classroom gains.</span></p>
+              <p class="pillar-desc"><span class="lang-zh">派发亲子卡，延展至家庭环境。</span><span class="lang-en">Bespoke home-learning extensions.</span></p>
             </div>
           </div>
         </div>
@@ -477,113 +275,125 @@
           <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">做中学：体验式学习与主动探究闭环</h2>
           <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">The Experiential Learning Cycle: From Classroom to Real World</h2>
           
-          <div class="glass-card" style="background: rgba(0, 206, 201, 0.05); border-left: 4px solid var(--accent-teal); margin-bottom: var(--space-md);">
-            <p class="lang-zh" style="font-size: 1rem; line-height: 1.6; margin: 0; color: var(--text-primary);">
-              <strong>教学融合底蕴：</strong> 深度融合 <strong>乐高教育 (LEGO Education) 4C 体验式学习框架</strong> 与 <strong>剑桥大学国际考评 (Cambridge Active Learning) 主动学习框架</strong>，让学生成为探究的主角，教师成为课堂的引导者。
+          <div class="glass-card" style="background: rgba(0, 206, 201, 0.05); border-left: 4px solid var(--accent-teal); margin-bottom: var(--space-xs); padding: 8px 12px;">
+            <p class="lang-zh" style="font-size: 0.9rem; line-height: 1.5; margin: 0; color: var(--text-primary);">
+              <strong>教学融合：</strong> 深度融合 <strong>乐高教育 (LEGO 4C)</strong> 与 <strong>剑桥大学 (Cambridge Active Learning)</strong> 框架，让学生成为探究的主角。
             </p>
-            <p class="lang-en" style="font-size: 1rem; line-height: 1.6; margin: 0; color: var(--text-primary);">
-              <strong>Pedagogical Fusion:</strong> Deeply integrates the <strong>LEGO Education 4C Experiential Learning Framework</strong> and the <strong>Cambridge Active Learning Framework</strong>. Shifts the classroom from passive listening to active creation.
+            <p class="lang-en" style="font-size: 0.9rem; line-height: 1.5; margin: 0; color: var(--text-primary);">
+              <strong>Pedagogical Fusion:</strong> Integrates the <strong>LEGO Education 4C</strong> and <strong>Cambridge Active Learning Frameworks</strong>.
             </p>
           </div>
 
-          <div class="cycle-container">
-            <div class="glass-card cycle-step">
+          <div class="cycle-container" style="gap: 8px;">
+            <div class="glass-card cycle-step" style="padding: 10px;">
               <div class="cycle-num">1</div>
-              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">参与 (Engage)</span><span class="lang-en">Engage</span></h4>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">互动故事与游戏引入，激发好奇</span><span class="lang-en">Interactive storytelling</span></p>
+              <h4 style="margin-bottom: 2px; font-family: var(--font-heading); font-size: 0.9rem;"><span class="lang-zh">参与 (Engage)</span><span class="lang-en">Engage</span></h4>
+              <img src="assets/images/pedagogy_discover_story.png" alt="Storytelling" style="width: 100%; height: 50px; object-fit: cover; border-radius: 4px; margin-top: 4px;">
             </div>
-            <div class="glass-card cycle-step">
-              <div class="cycle-num" style="background: var(--accent-purple); box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);">2</div>
-              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">探索 (Explore)</span><span class="lang-en">Explore</span></h4>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">引导探究式讨论与批判思维</span><span class="lang-en">Facilitated discussion</span></p>
+            <div class="glass-card cycle-step" style="padding: 10px;">
+              <div class="cycle-num" style="background: var(--accent-purple);">2</div>
+              <h4 style="margin-bottom: 2px; font-family: var(--font-heading); font-size: 0.9rem;"><span class="lang-zh">探索 (Explore)</span><span class="lang-en">Explore</span></h4>
+              <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">引导探究式讨论</span><span class="lang-en">Facilitated discussion</span></p>
             </div>
-            <div class="glass-card cycle-step">
-              <div class="cycle-num" style="background: var(--accent-coral); box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);">3</div>
-              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">阐释 (Explain)</span><span class="lang-en">Explain</span></h4>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">梳理核心概念，提炼方法路径</span><span class="lang-en">Actionable frameworks</span></p>
+            <div class="glass-card cycle-step" style="padding: 10px;">
+              <div class="cycle-num" style="background: var(--accent-coral);">3</div>
+              <h4 style="margin-bottom: 2px; font-family: var(--font-heading); font-size: 0.9rem;"><span class="lang-zh">阐释 (Explain)</span><span class="lang-en">Explain</span></h4>
+              <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">梳理核心方法</span><span class="lang-en">Actionable steps</span></p>
             </div>
-            <div class="glass-card cycle-step">
-              <div class="cycle-num" style="background: var(--accent-teal); box-shadow: 0 0 15px rgba(0, 206, 201, 0.4);">4</div>
-              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">拓展 (Elaborate)</span><span class="lang-en">Elaborate</span></h4>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">动手实践、角色扮演与项目式建构</span><span class="lang-en">Hands-on PBL & role-play</span></p>
+            <div class="glass-card cycle-step" style="padding: 10px;">
+              <div class="cycle-num" style="background: var(--accent-teal);">4</div>
+              <h4 style="margin-bottom: 2px; font-family: var(--font-heading); font-size: 0.9rem;"><span class="lang-zh">拓展 (Elaborate)</span><span class="lang-en">Elaborate</span></h4>
+              <img src="assets/images/pedagogy_experience_car.png" alt="Escape training" style="width: 100%; height: 50px; object-fit: cover; border-radius: 4px; margin-top: 4px;">
             </div>
-            <div class="glass-card cycle-step">
-              <div class="cycle-num" style="background: var(--accent-orange); box-shadow: 0 0 15px rgba(255, 142, 83, 0.4);">5</div>
-              <h4 style="margin-bottom: 4px; font-family: var(--font-heading);"><span class="lang-zh">评估 (Evaluate)</span><span class="lang-en">Evaluate</span></h4>
-              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;"><span class="lang-zh">表现性评量与自我反思认知闭环</span><span class="lang-en">Continuous feedback loop</span></p>
+            <div class="glass-card cycle-step" style="padding: 10px;">
+              <div class="cycle-num" style="background: var(--accent-orange);">5</div>
+              <h4 style="margin-bottom: 2px; font-family: var(--font-heading); font-size: 0.9rem;"><span class="lang-zh">评估 (Evaluate)</span><span class="lang-en">Evaluate</span></h4>
+              <img src="assets/images/pedagogy_act_presentation.png" alt="Presentation" style="width: 100%; height: 50px; object-fit: cover; border-radius: 4px; margin-top: 4px;">
             </div>
           </div>
 
-          <!-- Classroom Photos from slide 41 and 22 -->
-          <div style="margin-top: var(--space-md);">
-            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: var(--space-xs); text-align: center;"><span class="lang-zh">📸 真实的课堂教学与探究式学习体验</span><span class="lang-en">📸 Active Classroom Environments</span></div>
-            <div style="display: flex; gap: var(--space-sm); justify-content: center; overflow-x: auto; padding-bottom: 10px;">
-              <img src="assets/images/image151.jpeg" alt="Primary Classroom 1" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
-              <img src="assets/images/image152.jpeg" alt="Primary Classroom 2" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
-              <img src="assets/images/image153.jpeg" alt="Primary Classroom 3" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
-              <img src="assets/images/image86.png" alt="Preschool Activity" style="height: 100px; width: 150px; object-fit: cover; border-radius: 8px; border: 2px solid white; box-shadow: var(--glass-shadow);">
+          <!-- Classroom Photos Gallery -->
+          <div style="margin-top: var(--space-xs);">
+            <div style="display: flex; gap: 8px; justify-content: center; overflow-x: auto;">
+              <img src="assets/images/image151.jpeg" alt="Classroom 1" style="height: 75px; width: 120px; object-fit: cover; border-radius: 6px; border: 1px solid white;">
+              <img src="assets/images/image152.jpeg" alt="Classroom 2" style="height: 75px; width: 120px; object-fit: cover; border-radius: 6px; border: 1px solid white;">
+              <img src="assets/images/image153.jpeg" alt="Classroom 3" style="height: 75px; width: 120px; object-fit: cover; border-radius: 6px; border: 1px solid white;">
+              <img src="assets/images/image86.png" alt="Preschool Activity" style="height: 75px; width: 120px; object-fit: cover; border-radius: 6px; border: 1px solid white;">
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 5: Curriculum Pathways & Competencies -->
+      <!-- Slide 5: Dual-Track Pathway & Competencies -->
       <section class="slide" id="slide-4">
         <div class="slide-content">
-          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">双轨制课程路径 & 核心素养对标</h2>
-          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">Dual-Track Curriculum Pathway & Competency Matrix</h2>
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">双轨制课程路径 & 核心素养提升</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">Dual-Track Pathway & Competency Matrix</h2>
           
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-sm);">
-            <div class="glass-card" style="border-top: 4px solid var(--accent-orange);">
-              <h3 style="font-family: var(--font-heading); color: var(--accent-orange-dark); font-size: 1.25rem; margin-bottom: 10px;">
-                <span class="lang-zh">🌱 基础素养 (Foundation Competencies)</span>
-                <span class="lang-en">🌱 Foundation Competencies</span>
-              </h3>
-              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">侧重于儿童底层的脑力开发、认知逻辑与社会情感发展（Social-Emotional Learning）。</p>
-              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Focused on long-term cognitive abilities, logical reasoning, and social-emotional development.</p>
-              <ul class="curriculum-list" style="font-size: 0.85rem;">
-                <li><span class="lang-zh">逻辑推理与观察思考</span><span class="lang-en">Logical reasoning & observation</span></li>
-                <li><span class="lang-zh">倾听、沟通与公共演讲</span><span class="lang-en">Communication & presentation</span></li>
-                <li><span class="lang-zh">自我控制与情绪调节</span><span class="lang-en">Emotional regulation</span></li>
-                <li><span class="lang-zh">团队协作与共情责任</span><span class="lang-en">Teamwork & empathy</span></li>
-              </ul>
-            </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm);">
+            <!-- Foundation & Applied Tracks -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="glass-card" style="border-top: 3px solid var(--accent-orange); padding: 10px;">
+                <h4 style="font-family: var(--font-heading); color: var(--accent-orange-dark); margin: 0 0 4px 0; font-size: 1rem;">
+                  <span class="lang-zh">🌱 基础素养 (Foundation Track)</span>
+                  <span class="lang-en">🌱 Foundation Track</span>
+                </h4>
+                <p class="lang-zh" style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">逻辑推理、表达沟通、情绪调节、团队协作。</p>
+                <p class="lang-en" style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Logical reasoning, communication, emotional regulation.</p>
+                <img src="assets/images/pathway_logic_tablets.png" alt="Tablets Logic" style="width: 100%; height: 75px; object-fit: cover; border-radius: 4px; margin-top: 6px;">
+              </div>
 
-            <div class="glass-card" style="border-top: 4px solid var(--accent-teal);">
-              <h3 style="font-family: var(--font-heading); color: var(--accent-teal); font-size: 1.25rem; margin-bottom: 10px;">
-                <span class="lang-zh">🛡️ 专题应用素养 (Applied Thematic Modules)</span>
-                <span class="lang-en">🛡️ Applied Thematic Modules</span>
-              </h3>
-              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">侧重于在真实、高风险（High-stakes）的生活场景下立即付诸行动的生存与自救技能。</p>
-              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Focused on high-stakes, practical life skills and safety execution in immediate scenarios.</p>
-              <ul class="curriculum-list" style="font-size: 0.85rem; margin-bottom: 15px;">
-                <li><strong><span class="lang-zh">被困锁闭车内逃生技能</span><span class="lang-en">Locked Car Escape (Survival)</span></strong></li>
-                <li><strong><span class="lang-zh">防拐骗、防绑架防御机制</span><span class="lang-en">Anti-Abduction & Kidnapping Prevention</span></strong></li>
-                <li><span class="lang-zh">防溺水与水域安全自救</span><span class="lang-en">Water safety & self-rescue</span></li>
-                <li><span class="lang-zh">火灾逃生与应急安全演练</span><span class="lang-en">Fire emergencies</span></li>
-              </ul>
-              
-              <!-- Car simulation images from Slide 38 -->
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;"><span class="lang-zh">🚗 实战演练：模拟车内逃生与自救</span><span class="lang-en">🚗 Simulated Escape Dashboard Kits</span></div>
-              <div class="image-gallery">
-                <img src="assets/images/image137.png" alt="Simulated Car dashboard model">
-                <img src="assets/images/image141.jpeg" alt="Kids pushing horn safety training">
-                <img src="assets/images/image142.jpeg" alt="Kids practicing escape">
+              <div class="glass-card" style="border-top: 3px solid var(--accent-teal); padding: 10px;">
+                <h4 style="font-family: var(--font-heading); color: var(--accent-teal); margin: 0 0 4px 0; font-size: 1rem;">
+                  <span class="lang-zh">🛡️ 专题应用素养 (Applied Safety Modules)</span>
+                  <span class="lang-en">🛡️ Applied Safety Modules</span>
+                </h4>
+                <p class="lang-zh" style="font-size: 0.75rem; color: var(--text-secondary); margin: 0 0 4px 0;"><strong>锁闭车内逃生</strong>、防拐骗防绑架、水域自救、火灾应急演练。</p>
+                <div class="image-gallery">
+                  <img src="assets/images/image137.png" alt="Simulated Car dashboard" style="height: 50px;">
+                  <img src="assets/images/image141.jpeg" alt="Kids pushing horn" style="height: 50px;">
+                  <img src="assets/images/image142.jpeg" alt="Kids practicing escape" style="height: 50px;">
+                </div>
               </div>
             </div>
 
-            <div class="glass-card" style="border-top: 4px solid var(--accent-purple);">
-              <h3 style="font-family: var(--font-heading); color: var(--accent-purple); font-size: 1.25rem; margin-bottom: 10px;">
-                <span class="lang-zh">🎯 中国新课标核心素养对标</span>
-                <span class="lang-en">🎯 China 2022 Core Competency Mapping</span>
-              </h3>
-              <p class="lang-zh" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">与教育部《义务教育课程方案（2022版）》的核心素养三大板块高度对应：</p>
-              <p class="lang-en" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Seamlessly maps to requirements of local educational inspections:</p>
-              <ul class="curriculum-list" style="font-size: 0.85rem;">
-                <li><span class="lang-zh"><strong>文化基础：</strong> 逻辑推理、科学思维对标“科学精神”</span><span class="lang-en">Scientific spirit & basic theory</span></li>
-                <li><span class="lang-zh"><strong>自主发展：</strong> 情绪调节、自救技能对标“健康生活”</span><span class="lang-en">Healthy lifestyle & self-management</span></li>
-                <li><span class="lang-zh"><strong>社会参与：</strong> 团队协作、公共规则对标“责任担当”</span><span class="lang-en">Social participation & teamwork</span></li>
-              </ul>
+            <!-- Integrated Chart 1: Competencies Growth -->
+            <div class="glass-card" style="border-top: 3px solid var(--accent-purple); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h4 style="font-family: var(--font-heading); color: var(--accent-purple); margin: 0 0 4px 0; font-size: 1rem;">
+                  <span class="lang-zh">📊 学习前后核心素养提升对比</span>
+                  <span class="lang-en">📊 Core Competencies Growth Metric</span>
+                </h4>
+                <p class="lang-zh" style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">一学年后学生在 5 大维度的行为可观察增长：</p>
+                <p class="lang-en" style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Observable student growth after 1 year:</p>
+
+                <div class="bar-comparison">
+                  <div class="bar-row">
+                    <div><strong><span class="lang-zh">批判思维 & 逻辑</span><span class="lang-en">Critical Thinking</span></strong></div>
+                    <div class="bar-track"><div class="bar-fill-after" style="width: 94%;"></div></div>
+                    <div style="font-weight: 700; color: var(--accent-orange-dark); font-size: 0.75rem;">+42%</div>
+                  </div>
+                  <div class="bar-row">
+                    <div><strong><span class="lang-zh">表达 & 公共演讲</span><span class="lang-en">Communication</span></strong></div>
+                    <div class="bar-track"><div class="bar-fill-after" style="width: 96%;"></div></div>
+                    <div style="font-weight: 700; color: var(--accent-orange-dark); font-size: 0.75rem;">+48%</div>
+                  </div>
+                  <div class="bar-row">
+                    <div><strong><span class="lang-zh">情绪调节 & 抗挫</span><span class="lang-en">Self Regulation</span></strong></div>
+                    <div class="bar-track"><div class="bar-fill-after" style="width: 88%;"></div></div>
+                    <div style="font-weight: 700; color: var(--accent-orange-dark); font-size: 0.75rem;">+36%</div>
+                  </div>
+                  <div class="bar-row">
+                    <div><strong><span class="lang-zh">生存自救 & 安全</span><span class="lang-en">Safety Execution</span></strong></div>
+                    <div class="bar-track"><div class="bar-fill-after" style="width: 98%;"></div></div>
+                    <div style="font-weight: 700; color: var(--accent-orange-dark); font-size: 0.75rem;">+52%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(108, 92, 231, 0.1); border-radius: 4px; padding: 6px; font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">
+                🎯 <strong>新课标对标：</strong> 完美对标教育部《义务教育课程方案（2022版）》文化基础、自主发展与社会参与。
+              </div>
             </div>
           </div>
         </div>
@@ -595,71 +405,105 @@
           <h2 class="title-slide lang-zh" style="font-family: var(--font-heading);">数字化教研生态：赋能教师，降低门槛</h2>
           <h2 class="title-slide lang-en" style="font-family: var(--font-heading);">Intelligent Digital Platform: Empowering Teachers, Lowering Barriers</h2>
           
-          <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-md); align-items: center;">
-            <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
-              <div class="glass-card" style="border-left: 4px solid var(--accent-orange); padding: var(--space-sm);">
-                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-orange-dark);"><span class="lang-zh">🚀 极简备课系统 (Zero-Prep Plans)</span><span class="lang-en">🚀 Zero-Prep Lesson Plans</span></h4>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-                  <span class="lang-zh">包含完整电子白板动态课件、教师讲授脚本（逐字稿）、教具指引，让零经验教师也能实现高水准授课。</span>
-                  <span class="lang-en">Ready-to-teach interactive slides, script, and activity guides designed to eliminate teacher prep strain.</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); align-items: stretch;">
+            <!-- Left Side: Platform Features -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="glass-card" style="border-left: 3px solid var(--accent-orange); padding: 8px 12px;">
+                <h4 style="margin: 0 0 2px 0; font-family: var(--font-heading); color: var(--accent-orange-dark); font-size: 0.95rem;"><span class="lang-zh">🚀 极简备课系统 (Zero-Prep Plans)</span><span class="lang-en">🚀 Zero-Prep Lesson Plans</span></h4>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">
+                  <span class="lang-zh">动态白板课件、教师讲授逐字稿、教具指引，零经验教师轻松上手。</span>
+                  <span class="lang-en">Interactive slides and scripts designed to eliminate prep strain.</span>
                 </p>
               </div>
-              <div class="glass-card" style="border-left: 4px solid var(--accent-teal); padding: var(--space-sm);">
-                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-teal);"><span class="lang-zh">🤖 AI 助手与自动化报告 (AI-Powered Insights)</span><span class="lang-en">🤖 AI-Powered Insights</span></h4>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-                  <span class="lang-zh">智能生成个性化评语和表现性评估报告（Performance Report），一键导出直接与家长分享。</span>
-                  <span class="lang-en">Generate automated feedback, rubrics, and detailed developmental progress reports for parents.</span>
+              <div class="glass-card" style="border-left: 3px solid var(--accent-teal); padding: 8px 12px;">
+                <h4 style="margin: 0 0 2px 0; font-family: var(--font-heading); color: var(--accent-teal); font-size: 0.95rem;"><span class="lang-zh">🤖 AI 评估与家校系统 (AI Insights & Parent Portal)</span><span class="lang-en">🤖 AI Insights & Parent Portal</span></h4>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">
+                  <span class="lang-zh">智能生成表现性评估报告与亲子共读信，打造家校闭环。</span>
+                  <span class="lang-en">Automated progress reports and parent extension activities.</span>
                 </p>
               </div>
-              <div class="glass-card" style="border-left: 4px solid var(--accent-purple); padding: var(--space-sm);">
-                <h4 style="margin-bottom: 4px; font-family: var(--font-heading); color: var(--accent-purple);"><span class="lang-zh">🏡 云端家校系统 (Home Connection)</span><span class="lang-en">🏡 Cloud Home Connection</span></h4>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
-                  <span class="lang-zh">每节课后自动下发亲子共读信，提供家庭实操微挑战，强化家校共育闭环。</span>
-                  <span class="lang-en">Send structured parent communication letters and extension activities to reinforce classroom gains at home.</span>
-                </p>
+              
+              <!-- Integrated Chart 2: Teacher Prep Time Metric -->
+              <div class="glass-card" style="border: 1px solid rgba(255,142,83,0.3); background: rgba(255,142,83,0.05); padding: 10px; text-align: center;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-orange-dark);"><span class="lang-zh">⏱️ 教师每日备课时间减负对比</span><span class="lang-en">⏱️ Daily Teacher Prep Time Reclamation</span></div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 6px;">
+                  <div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--text-muted);">210 min</div>
+                    <div style="font-size: 0.65rem; color: var(--text-secondary);"><span class="lang-zh">传统自研备课</span><span class="lang-en">Traditional</span></div>
+                  </div>
+                  <div style="font-size: 1.2rem; color: var(--accent-orange-dark);">➔</div>
+                  <div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: var(--accent-orange-dark);">25 min</div>
+                    <div style="font-size: 0.7rem; font-weight: 700; color: var(--accent-orange-dark);"><span class="lang-zh">Novastars 云端平台</span><span class="lang-en">Novastars Console</span></div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Platform Actual Screenshot from slide 37 -->
-            <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
-              <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);"><span class="lang-zh">💻 教师电子教学软件控制后台</span><span class="lang-en">💻 Electronic Lecture Software & Slides Portal</span></div>
-              <img src="assets/images/image136.png" alt="Teacher Electronic lecture software mockup" style="width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: var(--radius-md); border: 2px solid var(--glass-border); box-shadow: var(--glass-shadow);">
-              <div style="font-size: 0.75rem; text-align: center; color: var(--text-muted);"><span class="lang-zh">云端授课互动大屏与教师指引界面</span><span class="lang-en">Interactive whiteboard slide delivery layout</span></div>
+            <!-- Right Side: Screenshots & Demo -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);"><span class="lang-zh">💻 电子白板控制后台与授课实景</span><span class="lang-en">💻 Interactive Whiteboard System</span></div>
+              <img src="assets/images/image136.png" alt="Whiteboard mockup" style="width: 100%; height: 130px; object-fit: contain; border-radius: 6px; border: 1px solid var(--glass-border);">
+              <img src="assets/images/platform_whiteboard_demo.png" alt="Classroom Demo" style="width: 100%; height: 110px; object-fit: cover; border-radius: 6px; border: 1px solid var(--accent-orange);">
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 7: Strategic Partners & Cooperation -->
+      <!-- Slide 7: Strategic Partners, Testimonials & Contact -->
       <section class="slide" id="slide-6">
         <div class="slide-content">
-          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading); text-align: center;">🤝 灵活多样的合作模式</h2>
-          <h2 class="title-slide lang-en" style="font-family: var(--font-heading); text-align: center;">Flexible Partnership Models & Contact</h2>
+          <h2 class="title-slide lang-zh" style="font-family: var(--font-heading); text-align: center; margin-bottom: var(--space-xs);">💬 标杆评价与合作联系</h2>
+          <h2 class="title-slide lang-en" style="font-family: var(--font-heading); text-align: center; margin-bottom: var(--space-xs);">Testimonials & Partnership Contact</h2>
+
+          <!-- Mini Testimonials Carousel/Grid inside Slide 7 -->
+          <div class="testimonial-mini-grid">
+            <div class="testimonial-mini-card">
+              <div>
+                <span class="lang-zh">“引入 Novastars 后，我们完美解决了‘双减’后课后延时服务缺乏高品质内容的难题。极简备课平台让老师无额外负担！”</span>
+                <span class="lang-en">“Novastars solved our after-school service content bottleneck under the Double Reduction policy with zero teacher strain!”</span>
+              </div>
+              <div style="font-weight: 700; margin-top: 4px; color: var(--accent-orange-dark);">— 张校长 (省级示范小学)</div>
+            </div>
+
+            <div class="testimonial-mini-card">
+              <div>
+                <span class="lang-zh">“‘锁闭车内逃生’模块帮我们轻松达标 10% 跨学科学习要求，更让学校口碑在家长圈爆棚。”</span>
+                <span class="lang-en">“The car escape module fulfilled our 10% interdisciplinary requirement and earned rave parent reviews!”</span>
+              </div>
+              <div style="font-weight: 700; margin-top: 4px; color: var(--accent-orange-dark);">— 李总监 (国际实验学校)</div>
+            </div>
+
+            <div class="testimonial-mini-card">
+              <div>
+                <span class="lang-zh">“以前做 PPT 搜教案要好几个晚上，现在电子白板逐字稿全齐，我终于可以把精力全放在关注孩子身上了！”</span>
+                <span class="lang-en">“I used to spend nights on slides. With Novastars, everything is ready. I focus 100% on guiding children!”</span>
+              </div>
+              <div style="font-weight: 700; margin-top: 4px; color: var(--accent-orange-dark);">— 王老师 (二年级班主任)</div>
+            </div>
+
+            <div class="testimonial-mini-card">
+              <div>
+                <span class="lang-zh">“我女儿回家教全家人如果困在车里怎么按双闪求救，看到孩子懂得保护自己，作为家长真的很欣慰！”</span>
+                <span class="lang-en">“My daughter came home and taught the family how to signal if trapped in a car. Such peace of mind!”</span>
+              </div>
+              <div style="font-weight: 700; margin-top: 4px; color: var(--accent-orange-dark);">— 孙女士 (三年级家长)</div>
+            </div>
+          </div>
           
-          <div style="display: flex; justify-content: center; width: 100%; margin-top: var(--space-md);">
-            <div class="glass-card" style="display: flex; flex-direction: column; gap: var(--space-sm); border: 1px solid rgba(255, 142, 83, 0.3); max-width: 600px; width: 100%;">
-              <h3 style="color: var(--accent-orange-dark); font-family: var(--font-heading); font-size: 1.3rem; margin-top: 0; margin-bottom: 5px; text-align: center;">
-                <span class="lang-zh">合作方案与联系方式</span>
-                <span class="lang-en">Cooperation & Contact</span>
-              </h3>
-              
-              <ul class="curriculum-list" style="font-size: 0.95rem; margin-bottom: var(--space-sm); line-height: 1.8;">
-                <li><span class="lang-zh"><strong>课程资源授权引入：</strong> 即插即用课程资源包，全面融入日常特色课表。</span><span class="lang-en">Curriculum licensing: plug-and-play modules for daily schedules.</span></li>
-                <li><span class="lang-zh"><strong>师资培训与考核体系 (TTT)：</strong> 为贵校教师提供全面培训与官方认证，打造骨干名师团队。</span><span class="lang-en">Educator training & certification: comprehensive pedagogical guidance.</span></li>
-                <li><span class="lang-zh"><strong>共建联合体验中心：</strong> 在校园内建立专属“未来素养与儿童安全实验室”。</span><span class="lang-en">Co-branded labs: establish dedicated safety experience zones on campus.</span></li>
-              </ul>
-              
-              <div style="display: flex; gap: var(--space-lg); align-items: center; justify-content: center; border-top: 1px solid var(--glass-border); padding-top: var(--space-sm); margin-top: var(--space-sm);">
-                <div class="qr-container" style="width: 90px; height: 90px; padding: 4px; flex-shrink: 0;">
-                  <div class="qr-mock" style="width: 80px; height: 80px; background-size: 8px 8px;">
-                    <div class="qr-center-eye" style="width: 16px; height: 16px;"></div>
-                  </div>
-                </div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
-                  <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 4px;"><span class="lang-zh">扫码与课程专家咨询：</span><span class="lang-en">Talk to our experts:</span></div>
-                  <div>📧 info@novastars.vn</div>
-                  <div>📞 +84 904 88 1010</div>
-                  <div>🌐 www.novastars.vn</div>
+          <!-- Contact Card -->
+          <div style="display: flex; justify-content: center; width: 100%; margin-top: var(--space-sm);">
+            <div class="glass-card" style="display: flex; flex-direction: row; gap: var(--space-md); align-items: center; border: 1px solid rgba(255, 142, 83, 0.3); max-width: 680px; width: 100%; padding: var(--space-sm);">
+              <img src="assets/images/partnership_handshake.png" alt="Handshake" style="width: 140px; height: 110px; object-fit: cover; border-radius: 6px; border: 1px solid var(--accent-orange);">
+              <div style="flex-grow: 1;">
+                <h3 style="color: var(--accent-orange-dark); font-family: var(--font-heading); font-size: 1.15rem; margin-top: 0; margin-bottom: 4px;">
+                  <span class="lang-zh">🤝 合作方案与专家咨询</span>
+                  <span class="lang-en">🤝 Cooperation & Contact</span>
+                </h3>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                  <div>• <strong>课程授权引入：</strong> 即插即用课程资源包融入特色课表。</div>
+                  <div>• <strong>师资培训与认证 (TTT)：</strong> 官方认证与骨干名师团队培养。</div>
+                  <div>📧 info@novastars.vn | 📞 +84 904 88 1010 | 🌐 www.novastars.vn</div>
                 </div>
               </div>
             </div>
